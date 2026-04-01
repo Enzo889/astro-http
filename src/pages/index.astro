@@ -1,8 +1,8 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 export const prerender = false;
 ---
@@ -15,53 +15,116 @@ export const prerender = false;
   <body>
     <Header />
     <main>
-      <h1>🧑‍🚀 Hello, Astronaut!</h1>
-      <h3>{new Date().getTime()}</h3>
-      <p>
-        Welcome to the official <a href="https://astro.build/">Astro</a> blog starter
-        template. This template serves as a lightweight, minimally-styled starting
-        point for anyone looking to build a personal website, blog, or portfolio
-        with Astro.
-      </p>
-      <p>
-        This template comes with a few integrations already configured in your
-        <code>astro.config.mjs</code> file. You can customize your setup with
-        <a href="https://astro.build/integrations">Astro Integrations</a> to add
-        tools like Tailwind, React, or Vue to your project.
-      </p>
-      <p>Here are a few ideas on how to get started with the template:</p>
-      <ul>
-        <li>Edit this page in <code>src/pages/index.astro</code></li>
-        <li>
-          Edit the site header items in <code>src/components/Header.astro</code>
-        </li>
-        <li>
-          Add your name to the footer in <code>src/components/Footer.astro</code
-          >
-        </li>
-        <li>
-          Check out the included blog posts in <code>src/content/blog/</code>
-        </li>
-        <li>
-          Customize the blog post page layout in <code
-            >src/layouts/BlogPost.astro</code
-          >
-        </li>
-      </ul>
-      <p>
-        Have fun! If you get stuck, remember to <a
-          href="https://docs.astro.build/"
-          >read the docs
-        </a> or <a href="https://astro.build/chat">join us on Discord</a> to ask
-        questions.
-      </p>
-      <p>
-        Looking for a blog template with a bit more personality? Check out <a
-          href="https://github.com/Charca/astro-blog-template"
-          >astro-blog-template
-        </a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-      </p>
+      <section class="hero">
+        <h1 class="gradient-text">Bienvenidos a mi espacio</h1>
+        <p class="subtitle">
+          Soy Enzo, y en este sitio comparto mi aprendizaje sobre desarrollo web moderno utilizando <strong>Astro</strong>, <strong>Astro DB</strong> y el despliegue global de bases de datos con <strong>Turso</strong>.
+        </p>
+        <div class="actions">
+          <a class="btn-primary" href="/blog">Leer mis artículos</a>
+          <a class="btn-secondary" href="/about">Sobre mi camino</a>
+        </div>
+      </section>
+
+      <section class="tech-stack">
+        <h2>🛠️ Las tecnologías que utilizo aquí</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Astro DB</h3>
+            <p>He integrado una base de datos relacional directamente en el ecosistema de Astro, respaldada por Turso para persistir mi información de manera sencilla.</p>
+          </div>
+          <div class="card">
+            <h3>Astro Actions</h3>
+            <p>Esta herramienta me permite manejar la lógica del servidor sin complicaciones. Así implementé el contador de <em>likes</em> interactivo de mis posts usando Vue.</p>
+          </div>
+          <div class="card">
+            <h3>Turso</h3>
+            <p>Utilizo esta base de datos SQLite distribuida globalmente en el <em>edge</em> para asegurar que el acceso a datos mantenga siempre una latencia mínima en toda mi web.</p>
+          </div>
+        </div>
+      </section>
     </main>
     <Footer />
   </body>
 </html>
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 0;
+    margin-bottom: 2rem;
+  }
+  .gradient-text {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .btn-primary, .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent-gradient);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+    color: #fff;
+  }
+  .btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text-main);
+    border: var(--border-glass);
+  }
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    background: rgba(30, 41, 59, 0.9);
+  }
+  .tech-stack {
+    margin-top: 4rem;
+  }
+  .tech-stack h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: var(--bg-glass);
+    border: var(--border-glass);
+    padding: 1.5rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.5);
+  }
+  .card h3 {
+    color: #a78bfa;
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+  }
+</style>

@@ -1,20 +1,52 @@
 <template>
-  <div v-if="isLoading">Loading...</div>
+  <div class="like-container">
+    <div v-if="isLoading" class="loading">Cargando...</div>
 
-  <button v-else-if="likeCount === 0" @click="likePost">Like this post</button>
+    <button v-else-if="likeCount === 0" @click="likePost">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+        ></path>
+      </svg>
+      Me gusta
+    </button>
 
-  <button v-else @click="likePost">
-    Likes
-    <span>{{ likeCount }}</span>
-  </button>
+    <button v-else @click="likePost">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+        ></path>
+      </svg>
+      Me gusta
+      <span class="like-count">{{ likeCount }}</span>
+    </button>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { actions } from 'astro:actions';
+import { actions } from "astro:actions";
 
-import { ref, watch } from 'vue';
-import confetti from 'canvas-confetti';
-import debounce from 'lodash.debounce';
+import { ref, watch } from "vue";
+import confetti from "canvas-confetti";
+import debounce from "lodash.debounce";
 
 interface Props {
   postId: string;
@@ -42,7 +74,7 @@ watch(
     });
 
     likeClicks.value = 0;
-  }, 500)
+  }, 500),
 );
 
 const likePost = async () => {
@@ -88,17 +120,64 @@ getCurrentLikes();
 </script>
 
 <style scoped>
+.like-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
 button {
-  background-color: #5e51bc;
+  background: var(
+    --accent-gradient,
+    linear-gradient(135deg, #7750eaff, #8b5cf6)
+  );
   color: white;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 4px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 button:hover {
-  background-color: #4a3f9a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+}
+
+.loading {
+  background: var(--bg-secondary, #1e293b);
+  color: var(--text-muted, #94a3b8);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
+}
+
+.like-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }
 </style>

@@ -1,68 +1,45 @@
-# Astro Starter Kit: Blog
+# Mi Blog Moderno con Astro, Turso y Astro DB
 
-```sh
-npm create astro@latest -- --template blog
-```
+Este es mi propio proyecto de blog de arquitectura *full-stack*, construido enteramente sobre las bases de **Astro**. Me dediqué a utilizar tecnologías e implementaciones experimentales de última generación que elevan el estándar de rendimiento en la web.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+![Captura de mi panel](/blog-placeholder-about.jpg)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Lo que implementé y cómo se divide
 
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+- **Diseño Personal Modernizado:** Desarrollé a mano este oscuro tema integrando elementos de *glassmorphism*, ligeros difuminados y un ecosistema completamente ajustable (*responsive*) basado íntegramente en directivas de puro CSS nativo vanilla.
+- **Astro DB & Turso:** Buscando cómo estructurar de forma eficaz mi recuento de _likes_ sin caerme en esquemas densos, conseguí integrarme ágilmente mediante SQLite distribuido velozmente hacia múltiples centros (*edge*). Mis bases relacionales han quedado perfectamente operativas en Astro.
+- **Astro Actions:** Renuncié por completo y con mucho gusto a armar la enorme y fatigosa capa tradicional extra de rutas JSON. Empleando este concepto del *RPC* conseguí ejecutar y enrutar datos a mi panel lógico como comandos inofensivos.
+- **Trazando islas de Vue.js:** Mi asombrosa dinámica central que recuenta y asiste los aplausos de mi comunidad —que nombro `LikeCounterAction.vue`— funciona encapsulada. Astro recorta gastos en procesamiento levantándola estrictamente tan solo en los módulos requeridos y descartándolos en el texto frío y simple.
+- **Hibridez Real (SSG + SSR):** Compilo todo lo estático como cemento firme para aligerar la navegación e inculco *Server-Side Render* cuando y solo cuando un usuario reclama datos dinámicos a mis funciones subyacentes.
 
-Features:
+## 📁 Explorando la Estructura de mi Ecosistema
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+Te invito a mirar la estructura básica en mis carpetas. Todo este núcleo se clasifica orgánicamente, permitiéndome gran maniobrabilidad en poco tiempo:
 
 ```text
-├── public/
+├── public/                # Mis archivos y activos totalmente públicos
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+│   ├── actions/           # Mi lógica segura desde donde envío transacciones de Action RPC
+│   ├── components/        # La colección interna de mis componentes web Astro e islas de Vue
+│   ├── content/           # Mis artículos documentados, divididos por las colecciones Markdown Markdown
+│   ├── layouts/           # Mis estructuras nativas de enmarcado central
+│   └── pages/             # Rutas que dirigen al navegador directamente a mis recursos en cada nodo
+├── astro.config.mjs       # Percepción integral de mis recursos globales e inicialización técnica
+└── package.json           # Las librerias precisas que me asisten aquí día con día
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🧞 Probando este entorno local
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Para este sistema te recomiendo altamente correr el sistema nativo y potente *handler* de `bun`. Desde una ventana de tu directorio principal (raíz) los invoco de esta forma a través del gestor:
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+| En la Interfaz        | Lo que hace en mi computadora                        |
+| :------------------ | :--------------------------------------------------- |
+| `bun install`       | Descargar de inmediado e instalar todas mis dependencias subyacentes |
+| `bun dev`           | Me deja observar un panel rápido e iniciar entorno de pruebas interno (corriendo sobre el localhost:4321)|
+| `bun astro db push` | Una sola rutina que uso para empujar mi archivo y forzar sincronización directa hacia la sede de datos central de mis bases de Turso |
+| `bun build`         | Transita hacia una minúscula carpeta `./dist/` generando todos mis pesados cálculos internamente dejándolo lista al espectador global |
+| `bun preview`       | Visualiza localmente y antes del despliegue toda la estructura rígida recién computada |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## ✨ Un Pequeño Crédito Adicional Base
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Todo lo que ves hoy arrancó remotamente con los mínimos detalles prestados y la humilde simpleza esquelética de algo llamado [Bear Blog](https://github.com/HermanMartinus/bearblog/). Luego arranqué todas y cada una de sus costuras estétricas rehaciéndolas para forcluir el código dentro de las bases integrales y configuradas por mi propia cuenta apuntando directo dentro de `src/styles/global.css`.
