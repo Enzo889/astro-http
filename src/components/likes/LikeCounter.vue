@@ -15,6 +15,7 @@
 import { ref, watch } from 'vue';
 import confetti from 'canvas-confetti';
 import debounce from 'lodash.debounce';
+import { actions } from 'astro:actions';
 
 interface Props {
     postId: string;
@@ -38,10 +39,23 @@ watch(likeCount, debounce(() => {
     likeClicks.value = 0;
 }, 500));
 
-const likePost = () => {
+const likePost = async () => {
     // likeCount.value = likeCount.value + 1;
     likeCount.value++
     likeClicks.value++;
+
+     const { data, error } = await actions.getGreeting({
+    age: 22,
+    name: 'Roronoa Zoro',
+    isActive: true,
+  });
+
+  if (error) {
+    return alert('Algo salió mal');
+  }
+
+  console.log({ data });
+
 
     confetti({
         particleCount: 100,
