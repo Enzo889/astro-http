@@ -10,7 +10,7 @@ import db from "@astrojs/db";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://astro-http-db.pages.dev/',
   integrations: [mdx(), sitemap(), db(), vue()],
   output: "hybrid",
   adapter: cloudflare()
